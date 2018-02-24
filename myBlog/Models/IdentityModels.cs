@@ -42,10 +42,9 @@ namespace myBlog.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<myBlog.Models.BlogPost> BlogPosts { get; set; }
+        public DbSet<myBlog.Models.BlogPost> BlogPosts { get; set; }
 
-        public System.Data.Entity.DbSet<myBlog.Models.Comment> Comments { get; set; }
+        public DbSet<myBlog.Models.Comment> Comments { get; set; }
 
-        public System.Data.Entity.DbSet<myBlog.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

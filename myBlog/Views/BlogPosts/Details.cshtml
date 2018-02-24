@@ -1,10 +1,204 @@
 ﻿@model myBlog.Models.BlogPost
+@using Microsoft.AspNet.Identity;
 
 @{
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+
+
+<!-- Start Blog-->
+<section class="main-contain">
+    <div class="container">
+        <div class="row">
+            <!-- Start Sidebar -->
+            <aside>
+                <div class="sidebar col-md-4 col-sm-5 col-xs-12">
+
+                    <!-- Start Sidebar Search -->
+                    <div class="sidebar-block sidebar-search-block cv-theme-30">
+                        <h3 class="cv-theme-widget-title">
+                            <span class="main-border">Search</span>
+                        </h3>
+                        <div class="box">
+                            <div class="sidebar-search-style">
+                                <input type="search" id="search" placeholder="Search..." />
+                                <a href="#"><span class="icon"><i class="fa fa-search"></i></span></a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Sidebar Search -->
+                    <!-- Start Left Sidebar Categories -->
+                    <div class="sidebar-block category sidebar-category-block cv-theme-30">
+                        <h3 class="cv-theme-widget-title">
+                            <span class="main-border">Categories</span>
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li><a href="#">Fashion</a></li>
+                            <li><a href="#">HTML</a></li>
+                            <li><a href="#">CSS</a></li>
+                            <li><a href="#">Design</a></li>
+                            <li><a href="#">Video</a></li>
+                            <li> <a href="#">Wordpress</a></li>
+                            <li><a href="#">Layout</a></li>
+                            <li><a href="#">Computers</a></li>
+                            <li><a href="#">Smartphone</a></li>
+                            <li><a href="#">Technology</a></li>
+
+                        </ul>
+                    </div>
+                    <!-- End Sidebar Categories -->
+                    <!-- Start Sidebar Archives -->
+                    <div class="sidebar-block archive cv-theme-30">
+                        <h3 class="cv-theme-widget-title">
+                            <span class="main-border">Archives</span>
+                        </h3>
+                        <ul class="list-unstyled">
+                            <li> <a href="#">May 2015</a></li>
+                            <li> <a href="#">April 2015</a></li>
+                            <li> <a href="#"> March 2015</a></li>
+                            <li><a href="#">February 2015</a> </li>
+                            <li><a href="#">January 2015</a></li>
+                        </ul>
+
+                    </div>
+                    <!-- End Sidebar Archives -->
+                    <!-- Start Sidebar Comments -->
+                    <div class="sidebar-block sidebar-coments-block cv-theme-30">
+                        <h3 class="cv-theme-widget-title">
+                            <span class="main-border">Recent Comments</span>
+                        </h3>
+
+                        <div class="single_comments">
+                            <img src="img/blog/avatar.png" alt="" />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                            <div class="entry-meta small muted">
+                                <span>By <a href="#">Admin</a></span> <span>On <a href="#">Creative</a></span>
+                            </div>
+                        </div>
+                        <div class="single_comments">
+                            <img src="img/blog/avatar.png" alt="" />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                            <div class="entry-meta small muted">
+                                <span>By <a href="#">Admin</a></span> <span>On <a href="#">Creative</a></span>
+                            </div>
+                        </div>
+                        <div class="single_comments">
+                            <img src="img/blog/avatar.png" alt="" />
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do </p>
+                            <div class="entry-meta small muted">
+                                <span>By <a href="#">Admin</a></span> <span>On <a href="#">Creative</a></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- End Sidebar Comments -->
+                    <!-- Start Sidebar Tags -->
+                    <div class="sidebar-block tag sidebar-tag-block">
+                        <h3 class="cv-theme-widget-title">
+                            <span class="main-border">Tags</span>
+                        </h3>
+                        <div class="box-content">
+                            <div class="tags">
+                                <a href="#">Free</a>
+                                <a href="#a">Fashion</a>
+                                <a href="#a">Best sale</a>
+                                <a href="#a">Popular</a>
+                                <a href="#a">Design</a>
+                                <a href="#a">Layout</a>
+                                <a href="#a">Wordpress</a>
+                                <a href="#a">HTML</a>
+                                <a href="#a">CSS</a>
+                                <a href="#a">Design</a>
+                                <a href="#a">PHP</a>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- End Sidebar Tags -->
+
+
+                </div>
+            </aside>
+            <!-- End Sidebar -->
+                <div class="col-md-8 col-sm-7 col-xs-12">
+                    <div class="cv-theme-pa-30">
+                        <div class="standard-post-thumbnail">
+                            <div class="post-image-block">
+                                <img src="@Url.Content(Model.MediaUrl)" alt="" class="img-responsive">
+                            </div>
+                            <div class="blog-dis">
+                                <h2 class="entry-title">@Model.Title</h2>
+                                <p class="post-meta">By <span class="author vcard"><a title="Posts By Admin" href="#">Admin</a></span>  |  <span class="published">@Model.Created</span>  |  <a rel="category tag" href="#">Photography, Joomla</a>  </p>
+                                @Html.Raw(@Model.Body)
+                            </div>
+                        </div>
+                    </div>
+                    @*<div class="blog-comments-block cv-theme-30">
+                        <h1 class="comments_title">3 Comments</h1>
+                        <div class="media comment_section">
+                            <div class="pull-left post_comments">
+                                <a href="#"><img src="img/blog/comments1.png" class="img-circle" alt="" /></a>
+                            </div>
+                            <div class="media-body post_reply_comments">
+                                <h4>Jhon Doe</h4>
+                                <h6>March 22 2016</h6>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud</p>
+                                <a href="#">Reply</a>
+                            </div>
+                        </div>
+                    </div>*@
+                    <div class="blog-comments-block cv-theme-30">
+                        <h1 class="comments_title">@Model.Comments.Count() Comments</h1>
+                        
+                            @foreach (var comment in Model.Comments.OrderByDescending(c => c.Created))
+                            {
+                                <div class="media comment_section">
+                                    <div class="pull-left post_comments">
+                                        <a href="#"><img src="~/img/avatars/dRZf3FBA.jpg" class="img-circle" alt="" /></a>
+                                    </div>
+                                    <div class="media-body post_reply_comments">
+                                        <h4>@comment.Author.DisplayName</h4>
+                                        <h6>@comment.Created</h6>
+                                        @Html.Raw(comment.Body)
+         
+                                        
+                                    </div>
+                                </div>
+                                if (User.IsInRole("Admin") || User.IsInRole("Moderator") || comment.AuthorId == HttpContext.Current.User.Identity.GetUserId())
+                                {
+                                    @Html.ActionLink("Edit", "Edit", "Comments", new { id = comment.Id }, null)
+                                    @Html.ActionLink("Delete", "Delete", "Comments", new { id = comment.Id }, null)
+                                }
+                            }
+                    </div>
+
+                @if (User.Identity.IsAuthenticated)
+                {
+                    <div class="blog-post-comment clearfix">
+                        <div class="form-main">
+                            @using (Html.BeginForm("Create", "Comments", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken();
+
+                                @Html.Hidden("PostId", Model.Id)
+                                @Html.Hidden("bpSlug", Model.Slug)
+
+                                <p class="text">
+                                    <textarea name="Body" class="feedback-input" id="comment" placeholder="Comment"></textarea>
+                                </p>
+
+                                <div class="submit">
+                                    <button type="submit" class="form-button">Post Comment</button>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+</section>
+<!-- End Blog-->
 
 <div>
     <h4>BlogPost</h4>

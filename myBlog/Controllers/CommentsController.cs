@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using myBlog.Models;
+using Microsoft.AspNet.Identity;
 
 namespace myBlog.Controllers
 {
@@ -49,17 +50,23 @@ namespace myBlog.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,PostId,AuthorId,Body,Created,Updated,UpdateReason")] Comment comment, string bpslug)
         {
             if (ModelState.IsValid)
             {
+                //db.Comments.Add(comment);
+                //db.SaveChanges();
+                //return RedirectToAction("Index");
+
+                comment.AuthorId = User.Identity.GetUserId();
+                comment.Created = DateTime.Now;
                 db.Comments.Add(comment);
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Details", "BlogPosts", new { Slug = bpslug });
             }
 
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
-            ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
+            //ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
+            //ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
             return View(comment);
         }
 
@@ -93,6 +100,7 @@ namespace myBlog.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            comment.Updated = DateTime.Now;
             ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
             ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
             return View(comment);

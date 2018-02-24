@@ -1,69 +1,100 @@
-﻿@model IEnumerable<myBlog.Models.BlogPost>
+﻿@using myBlog.Models;
+@using PagedList;
+@using PagedList.Mvc;
+@model IPagedList<BlogPost>
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Created)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Updated)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Body)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.MediaUrl)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Published)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Slug)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Created)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Updated)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Body)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.MediaUrl)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Published)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Slug)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
 }
 
-</table>
+
+
+
+@*@foreach (var item in Model)
+{
+
+    @Html.DisplayFor(modelItem => item.Created)
+
+    @Html.DisplayFor(modelItem => item.Updated)
+
+    @Html.DisplayFor(modelItem => item.Title)
+
+    @Html.Raw(item.Body)
+
+    @Html.DisplayFor(modelItem => item.MediaUrl)
+
+    @Html.DisplayFor(modelItem => item.Published)
+
+    @Html.DisplayFor(modelItem => item.Slug)
+
+    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+    @Html.ActionLink("Details", "Details", new { id = item.Id })
+    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+}*@
+
+
+<!-- Start Blog-->
+
+<section class="main-contain">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-md-6 col-sm-6 col-xs-12 cv-theme-pa-30">
+                    <div class="standard-post-thumbnail">
+                        @if (item.MediaUrl != null)
+                        {
+                            <div class="post-image-block">
+                                <a href="blog_signal.html"><img src="@item.MediaUrl" alt="" class="img-responsive"></a>
+                            </div>
+                        }
+                        <div class="blog-dis">
+                            <h2 class="entry-title">@Html.ActionLink(item.Title, "Details", new { slug = item.Slug })</h2>
+                            <p class="post-meta">By <span class="author vcard"><a title="Posts By Admin" href="#">Admin</a></span>  |  <span class="published">@item.Created</span>  |  <a rel="category tag" href="#">Corporate, Joomla</a>  </p>
+                            <div class = 'blogThumbnailText'>@Html.Raw(item.Body)</div>
+                        </div>
+                    </div>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    }
+                        
+                   
+           
+                    
+                    
+                </div>
+            }
+        </div>
+        <!-- Start Pagination-->
+        @*<div class="cd-pagination">
+            <ul class="pagination">
+                <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+            </ul>
+        </div>*@
+        Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+        <!-- End Pagination-->
+    </div>
+</section>
+
+<!-- End Blog-->
+
+
+
