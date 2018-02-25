@@ -13,10 +13,11 @@ namespace myBlog.Models
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string DisplayName { get; set; }
+        public string Avatar { get; set; }
 
         public ApplicationUser()
         {
-            this.BlogComments = new HashSet<Comment>();
+            BlogComments = new HashSet<Comment>();
         }
 
         public virtual ICollection<Comment> BlogComments { get; set; }

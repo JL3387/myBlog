@@ -3,10 +3,18 @@
 @using PagedList.Mvc;
 @model IPagedList<BlogPost>
 
+<!-- Start Breadcrumb -->
+<div class="page-banner no-subtitle">
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h2>John's Blog</h2>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Breadcrumb -->
 
-@{
-    ViewBag.Title = "Index";
-}
 
 @if (User.IsInRole("Admin"))
 {
@@ -14,32 +22,6 @@
         @Html.ActionLink("Create New", "Create")
     </p>
 }
-
-
-
-
-@*@foreach (var item in Model)
-{
-
-    @Html.DisplayFor(modelItem => item.Created)
-
-    @Html.DisplayFor(modelItem => item.Updated)
-
-    @Html.DisplayFor(modelItem => item.Title)
-
-    @Html.Raw(item.Body)
-
-    @Html.DisplayFor(modelItem => item.MediaUrl)
-
-    @Html.DisplayFor(modelItem => item.Published)
-
-    @Html.DisplayFor(modelItem => item.Slug)
-
-    @Html.ActionLink("Edit", "Edit", new { id = item.Id })
-    @Html.ActionLink("Details", "Details", new { id = item.Id })
-    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-
-}*@
 
 
 <!-- Start Blog-->

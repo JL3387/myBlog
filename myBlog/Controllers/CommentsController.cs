@@ -73,18 +73,33 @@ namespace myBlog.Controllers
         // GET: Comments/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
+            if (id != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                var uId = User.Identity.GetUserId();
+                if (IsCommentAuthor(uId, id.Value))
+                {
+
+                    Comment comment = db.Comments.Find(id);
+                    if (comment == null)
+                    {
+                        return HttpNotFound();
+                    }
+
+                }
+
+                var bpId = db.Comments.Find(id).PostId;
+                var bpSlug = db.BlogPosts.Find(bpId).Slug;
+                return RedirectToAction("","",new { slug = bpSlug});
             }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.AuthorId = new SelectList(db.Users, "Id", "FirstName", comment.AuthorId);
-            ViewBag.PostId = new SelectList(db.BlogPosts, "Id", "Title", comment.PostId);
-            return View(comment);
+            return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        }
+
+        private bool IsCommentAuthor(string UserId, int CommentId)
+        {
+
+            bool ca = db.Comments.All(c => c.Id == CommentId && c.AuthorId == UserId);
+
+            return ca;
         }
 
         // POST: Comments/Edit/5

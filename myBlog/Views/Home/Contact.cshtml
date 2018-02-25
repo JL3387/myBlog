@@ -1,17 +1,52 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model myBlog.Models.EmailModel
+
+@{
+    ViewBag.Title = "Contact Me";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+<div class="page-banner no-subtitle">
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h2>@ViewBag.Title</h2>
+            </div>
+        </div>
+    </div>
+</div>
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+<section class="main-contain">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-bg-color-style2">
+                    <div class="col-md-3 col-sm-2"></div>
+                    <div class="col-md-6 col-sm-8 col-xs-12 clearfix">
+                        <div class="form-main">
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                
+                                    @Html.TextBoxFor(m => m.FromName, new { @class = "feedback-input", placeHolder="Name" })
+                                    @Html.ValidationMessageFor(m => m.FromName)
+
+                                    @Html.TextBoxFor(m => m.FromEmail, new { @class = "feedback-input", placeHolder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.FromEmail)
+                                
+                                    @Html.TextBoxFor(m => m.Subject, new { @class = "feedback-input", placeHolder = "Subject" })
+                                    @Html.ValidationMessageFor(m => m.Subject)
+                                
+                                    @Html.TextAreaFor(m => m.Body, new { @class = "feedback-input", placeHolder = "Comment" })
+                                    @Html.ValidationMessageFor(m => m.Body)
+
+                                <div class="submit">
+                                    <input type="submit" value="Send" class="form-button" />
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
