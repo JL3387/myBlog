@@ -25,7 +25,6 @@
 
 
 <!-- Start Blog-->
-
 <section class="main-contain">
     <div class="container">
         <div class="row">
@@ -35,13 +34,13 @@
                     <div class="standard-post-thumbnail">
                         @if (item.MediaUrl != null)
                         {
-                            <div class="post-image-block">
-                                <a href="blog_signal.html"><img src="@item.MediaUrl" alt="" class="img-responsive"></a>
+                            <div class="post-image-block img"> 
+                                <a href="blog_signal.html"><img src="@item.MediaUrl" alt="" class="img-responsive" style="height:367px; object-fit:contain;"></a>
                             </div>
                         }
                         <div class="blog-dis">
                             <h2 class="entry-title">@Html.ActionLink(item.Title, "Details", new { slug = item.Slug })</h2>
-                            <p class="post-meta">By <span class="author vcard"><a title="Posts By Admin" href="#">Admin</a></span>  |  <span class="published">@item.Created</span>  |  <a rel="category tag" href="#">Corporate, Joomla</a>  </p>
+                            <p class="post-meta">By <span class="author vcard"><a title="Posts By Admin" href="#">Admin</a></span>  |  <span class="published">@item.Created</span> </p>
                             <div class = 'blogThumbnailText'>@Html.Raw(item.Body)</div>
                         </div>
                     </div>
@@ -59,17 +58,6 @@
             }
         </div>
         <!-- Start Pagination-->
-        @*<div class="cd-pagination">
-            <ul class="pagination">
-                <li><a href="#"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#"><i class="fa fa-angle-right" aria-hidden="true"></i></a></li>
-            </ul>
-        </div>*@
         Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
         @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         <!-- End Pagination-->

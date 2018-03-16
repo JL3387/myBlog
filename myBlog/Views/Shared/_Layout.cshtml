@@ -24,7 +24,6 @@
     <link href="~/Content/magnific-popup.css" rel="stylesheet" />
     <link href="~/Content/PagedList.css" rel="stylesheet" />
 
-    <link href="~/Content/custom.css" rel="stylesheet" />
     <!-- WEB FONTS -->
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
@@ -74,7 +73,7 @@
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li>
-                                        @Html.ActionLink("Create New", "Create")
+                                        @Html.ActionLink("Create New Blog", "Create", "BlogPosts")
                                     </li>
                                 }
                             </ul>
@@ -85,8 +84,6 @@
             <!-- End Navbar -->
         </div>
         <!-- End Header -->
-
-        @*<div class="container body-content">*@
             @RenderBody()
             <hr />
             <!-- Start Foooter-->
@@ -98,12 +95,10 @@
                             <!-- Start Contact -->
                             <div class="col col-md-3 col-sm-6 footer-links">
                                 <h3 class="cv-theme-widget-title">
-                                    <span class="main-border">Contact Us</span>
+                                    <span class="main-border">Contact Me</span>
                                 </h3>
 
                                 <ul class="contact-list-unstyled">
-                                    <li><i class="fa fa-home"></i>121 King Street, Melbourne, Australia</li>
-                                    <li><i class="fa fa-phone"></i> Phone : (+123) 12-345-6789</li>
                                     <li><i class="fa fa-envelope-o"></i>Email:  <a href="#">craftdesignstaff@gmail.com</a></li>
                                     <li><i class="fa fa-connectdevelop"></i>Web :  <a href="http://craftdzine.com">craftdzine.com</a></li>
                                 </ul>
@@ -111,82 +106,11 @@
                                     <p>&copy; All Rights Reserved @@ <a target="_blank" href="http://craftdzine.com">CraftDzine</a></p>
                                 </div>
                             </div>
-                            <!-- End Contact -->
-                            <!-- Start Quick Links -->
-                            <div class="col-md-3 col-sm-6 col-xs-12 footer-links  category sidebar-category-block">
-                                <h3 class="cv-theme-widget-title">
-                                    <span class="main-border">Quick Links</span>
-                                </h3>
-
-                                <ul class="list-unstyled">
-                                    <li><a href="about_us.html">About Us</a></li>
-                                    <li><a href="team.html">Our Teams</a></li>
-                                    <li><a href="price.html">Price Table</a></li>
-                                    <li><a href="services.html">Services</a></li>
-                                    <li><a href="contact_us.html">Contact Us</a></li>
-                                </ul>
-
-                            </div>
-                            <!-- End  Quick Links -->
-                            <!-- Start Recent Works -->
-                            <div class="col col-md-3 col-sm-6 footer-links">
-                                <h3 class="cv-theme-widget-title">
-                                    <span class="main-border">Recent Works</span>
-                                </h3>
-                                <ul class="thumb-list">
-                                    <li><a href="#"><img src="~/img/slidingbar/slidingbar1.jpg" alt="" title="" class="thumb-list-item img-responsive" /></a></li>
-                                    <li><a href="#"><img src="~/img/slidingbar/slidingbar2.jpg" alt="" title="" class="thumb-list-item img-responsive" /></a></li>
-                                    <li><a href="#"><img src="~/img/slidingbar/slidingbar3.jpg" alt="" title="" class="thumb-list-item img-responsive" /></a></li>
-                                    <li><a href="#"><img src="~/img/slidingbar/slidingbar4.jpg" alt="" title="" class="thumb-list-item img-responsive" /></a></li>
-                                    <li><a href="#"><img src="~/img/slidingbar/slidingbar5.jpg" alt="" title="" class="thumb-list-item img-responsive" /></a></li>
-                                    <li><a href="#"><img src="~/img/slidingbar/slidingbar6.jpg" alt="" title="" class="thumb-list-item img-responsive" /></a></li>
-                                </ul>
-                            </div>
-                            <!-- End  Recent Works -->
-                            <!-- Start Tags -->
-                            <div class="col-md-3 col-sm-6 footer-links">
-                                <h3 class="cv-theme-widget-title">
-                                    <span class="main-border">Tags</span>
-                                </h3>
-                                <div class="box-content">
-                                    <div class="tags">
-                                        <a href="#">Free</a>
-                                        <a href="#a">Fashion</a>
-                                        <a href="#a">Best sale</a>
-                                        <a href="#a">Popular</a>
-                                        <a href="#a">Design</a>
-                                        <a href="#a">Layout</a>
-                                        <a href="#a">Wordpress</a>
-                                        <a href="#a">HTML</a>
-                                        <a href="#a">CSS</a>
-                                        <a href="#a">Design</a>
-                                        <a href="#a">PHP</a>
-                                        <a href="#">Free</a>
-                                        <a href="#a">Fashion</a>
-                                        <a href="#a">Best sale</a>
-                                        <a href="#a">Popular</a>
-                                        <a href="#a">Design</a>
-                                        <a href="#a">Layout</a>
-                                        <a href="#a">Wordpress</a>
-                                        <a href="#a">HTML</a>
-                                        <a href="#a">CSS</a>
-                                        <a href="#a">Design</a>
-                                        <a href="#a">PHP</a>
-                                        <a href="#a">Fashion</a>
-                                        <a href="#a">Best sale</a>
-                                        <a href="#a">Popular</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Tags -->
-
                         </div>
-
                     </div>
                 </div>
             </footer>
             <!-- End Foooter-->
-        @*</div>*@
         <!-- End Main Wrapper -->
         </div>
     </div>

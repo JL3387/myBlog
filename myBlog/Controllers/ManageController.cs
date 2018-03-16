@@ -10,6 +10,7 @@ using myBlog.Models;
 
 namespace myBlog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class ManageController : Controller
     {

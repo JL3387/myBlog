@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace myBlog.Controllers
 {
+    [RequireHttps]
     public class CommentsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -76,7 +77,7 @@ namespace myBlog.Controllers
             if (id != null)
             {
                 var uId = User.Identity.GetUserId();
-                if (IsCommentAuthor(uId, id.Value))
+                if (IsCommentAuthor(uId, id.Value) || User.IsInRole("Admin") || User.IsInRole("Moderator"))
                 {
 
                     Comment comment = db.Comments.Find(id);
@@ -84,12 +85,13 @@ namespace myBlog.Controllers
                     {
                         return HttpNotFound();
                     }
-
+                return View(comment);
                 }
-
-                var bpId = db.Comments.Find(id).PostId;
-                var bpSlug = db.BlogPosts.Find(bpId).Slug;
-                return RedirectToAction("","",new { slug = bpSlug});
+  
+                //var bpId = db.Comments.Find(id).PostId;
+                //var bpSlug = db.BlogPosts.Find(bpId).Slug;
+                //return RedirectToAction("","",new { slug = bpSlug});
+                //return RedirectToAction("Edit","Comments");
             }
             return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
         }

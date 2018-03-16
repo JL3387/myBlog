@@ -31,8 +31,7 @@ namespace myBlog
             var GmailPassword = WebConfigurationManager.AppSettings["password"];
             var host = WebConfigurationManager.AppSettings["host"];
             int port = Convert.ToInt32(WebConfigurationManager.AppSettings["port"]);
-
-            var from = new MailAddress(WebConfigurationManager.AppSettings["emailfrom"], "Password Rest from Johns Blog");
+            var from = new MailAddress(WebConfigurationManager.AppSettings["emailto"]);
 
             //Email object set up
             var email = new MailMessage(from, new MailAddress(message.Destination))

@@ -14,6 +14,7 @@ using System.IO;
 
 namespace myBlog.Controllers
 {
+    [RequireHttps]
     [Authorize]
     public class AccountController : Controller
     {
@@ -154,8 +155,6 @@ namespace myBlog.Controllers
             ApplicationDbContext db = new ApplicationDbContext();
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DisplayName = model.DisplayName, Avatar = model.Avatar};
-                var result = await UserManager.CreateAsync(user, model.Password);
 
                 if (ImageUploadValidator.IsWebFriendlyImage(image))
                 {
@@ -163,6 +162,9 @@ namespace myBlog.Controllers
                     image.SaveAs(Path.Combine(Server.MapPath("~/img/avatars/"), fileName));
                     model.Avatar = "/img/avatars/" + fileName;
                 }
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, DisplayName = model.DisplayName, Avatar = model.Avatar};
+                var result = await UserManager.CreateAsync(user, model.Password);
+
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
@@ -173,7 +175,7 @@ namespace myBlog.Controllers
                     var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "BlogPosts");
                 }
                 AddErrors(result);
             }
@@ -403,7 +405,7 @@ namespace myBlog.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "BlogPosts");
         }
 
         //
@@ -488,7 +490,7 @@ namespace myBlog.Controllers
             {
                 return Redirect(returnUrl);
             }
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "BlogPosts");
         }
 
         internal class ChallengeResult : HttpUnauthorizedResult
