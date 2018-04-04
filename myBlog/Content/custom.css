@@ -1,0 +1,19 @@
+﻿#Google {
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: url('../img/google.png');
+    background-size: 100%;
+}
+
+#LinkedIn {
+    cursor: pointer;
+    color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    background: url('../img/linkedin.png');
+    background-size: 100%;
+}

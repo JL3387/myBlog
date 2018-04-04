@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using myBlog.Models;
+using Owin.Security.Providers.LinkedIn;
 
 namespace myBlog
 {
@@ -34,7 +35,7 @@ namespace myBlog
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -58,11 +59,21 @@ namespace myBlog
             //   appId: "",
             //   appSecret: "");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            //app.UseGitHubAuthentication(
+            //    clientId: "",
+            //    clientSecret: ""
+            //);
+
+            app.UseLinkedInAuthentication(
+                clientId: "784gxwagi3hvlf",
+                clientSecret: "V7Q4igA8HbG7kfHb"
+            );
+
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "469566711644-ifumai0jubbc4mu0c7p1llf29ft3beqs.apps.googleusercontent.com",
+                ClientSecret = "ll1rSqBxUK9qg8_GqsxCXq0z"
+            });
         }
     }
 }

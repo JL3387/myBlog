@@ -47,7 +47,7 @@ namespace myBlog.Controllers
                         Subject = "Blog Contact Email",Body = string.Format(body, model.FromName, model.FromEmail, model.Body),IsBodyHtml = true};
                     var svc = new PersonalEmail();
                     await svc.SendAsync(email);
-                    return View(new EmailModel());
+                    return RedirectToAction("Index", "BlogPosts");
                 }
                 catch (Exception ex)
                 {
@@ -55,7 +55,7 @@ namespace myBlog.Controllers
                     await Task.FromResult(0);
                 }
             }
-            return View(model);
+            return RedirectToAction("Index", "BlogPosts");
         }
     }
 }
