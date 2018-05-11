@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="DefaultConnection-Web.config Connection String" description="DefaultConnection Connection String used in web.config by the application to access the database." defaultValue="Data Source=tcp:johncfserver.database.windows.net,1433;&#xD;&#xA;         Initial Catalog=jmathisblog;&#xD;&#xA;         User Id=JohnMathis;&#xD;&#xA;         Password=Athena1987;&#xD;&#xA;         Persist Security Info=True" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\jlee8\\Documents\\CodingProjects\\myBlog\\myBlog\\obj\\Release\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='DefaultConnection']/@connectionString" />
+  </parameter>
+</parameters>

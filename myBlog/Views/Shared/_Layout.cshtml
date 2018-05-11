@@ -68,7 +68,6 @@
                         <div class="menu-container">
                             <ul class="nav navbar-nav">
                                 <li>@Html.ActionLink("Home", "Index", "BlogPosts")</li>
-                                <li>@Html.ActionLink("About Me", "About", "Home")</li>
                                 <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                                 <li>@Html.Partial("_LoginPartial")</li>
                                 @if (User.IsInRole("Admin"))
@@ -103,7 +102,7 @@
                             
                                 </ul>
                                 <div class="footer-copyright">
-                                    <p>&copy; All Rights Reserved @@ <a target="_blank" href="http://craftdzine.com">CraftDzine</a></p>
+                                 
                                 </div>
                             </div>
                         </div>

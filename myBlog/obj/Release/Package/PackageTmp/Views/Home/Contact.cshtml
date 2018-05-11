@@ -1,0 +1,51 @@
+﻿@model myBlog.Models.EmailModel
+
+<div class="page-banner no-subtitle">
+    <div class="container">
+        <div class="row">
+            <div class="text-center">
+                <h2>Contact Me</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr />
+<section class="main-contain">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="page-bg-color-style2">
+                    <div class="col-md-3 col-sm-2"></div>
+                    <div class="col-md-6 col-sm-8 col-xs-12 clearfix">
+                        <div class="form-main">
+                            <p>All Fields are required</p>
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                
+
+                                    @Html.TextBoxFor(m => m.FromName, new { @class = "feedback-input", placeHolder="Name" })
+                                    @Html.ValidationMessageFor(m => m.FromName)
+
+                                    @Html.TextBoxFor(m => m.FromEmail, new { @class = "feedback-input", placeHolder = "Email" })
+                                    @Html.ValidationMessageFor(m => m.FromEmail)
+                                
+                                    @Html.TextBoxFor(m => m.Subject, new { @class = "feedback-input", placeHolder = "Subject" })
+                                    @Html.ValidationMessageFor(m => m.Subject)
+                                
+                                    @Html.TextAreaFor(m => m.Body, new { @class = "feedback-input", placeHolder = "Comment" })
+                                    @Html.ValidationMessageFor(m => m.Body)
+
+                                <div class="submit">
+                                    <input type="submit" value="Send" class="form-button" />
+
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

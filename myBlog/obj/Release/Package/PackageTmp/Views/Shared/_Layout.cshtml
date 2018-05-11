@@ -1,0 +1,178 @@
+﻿<!DOCTYPE html>
+<!--[if !IE]><!-->
+<html lang="en">
+ <!--<![endif]-->
+<head>
+    <title>John's Blog</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Dream Multipurpose HTML5 Template">
+    <meta name="author" content="CraftDzine">
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+
+    <!-- CSS Global -->
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/style.css" rel="stylesheet" />
+    <link href="~/Content/owl.carousel.css" rel="stylesheet" />
+    <link href="~/Content/owl.theme.css" rel="stylesheet" />
+    <link href="~/Content/jquery.flexslider.css" rel="stylesheet" />
+    <link href="~/Content/animate.css" rel="stylesheet" />
+    <link href="~/Content/font-awesome.min.css" rel="stylesheet" />
+    <link href="~/Content/magnific-popup.css" rel="stylesheet" />
+    <link href="~/Content/PagedList.css" rel="stylesheet" />
+    <link href="~/Content/custom.css" rel="stylesheet" />
+
+    <!-- WEB FONTS -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:500,800" rel="stylesheet" property="stylesheet" type="text/css" media="all" />
+
+</head>
+<body>
+    <!-- Start Main Wrapper -->
+    <div class="wrapper">
+        <!-- Start Header -->
+        <div class="header cd-header-block">
+            <!--Start Navbar -->
+            <div class="navbar mega-menu" role="navigation">
+                <div class="container">
+                    <!-- Start Brand and Mobile Display -->
+                    <div class="menu-container">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".cd-navbar">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <!-- Search -->
+                        <div class="header-right-sidebar">
+                            <ul class="menu-icons-list">  
+                                <li class="menu-icons">
+                                    <i class="menu-icons-style search search-close search-btn fa fa-search"></i>
+                                    <div class="search-open">
+         
+                                        @using (Html.BeginForm("Index", "BlogPosts", FormMethod.Post))
+                                        {
+                                            <input type="search" name="searchStr" class="form-control" id="nav-search" placeholder="Search" />
+                                        }
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Search -->
+                    <!-- Nav Links -->
+                    <div class="collapse navbar-collapse cd-navbar">
+                        <div class="menu-container">
+                            <ul class="nav navbar-nav">
+                                <li>@Html.ActionLink("Home", "Index", "BlogPosts")</li>
+                                <li>@Html.ActionLink("About Me", "About", "Home")</li>
+                                <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                                <li>@Html.Partial("_LoginPartial")</li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>
+                                        @Html.ActionLink("Create New Blog", "Create", "BlogPosts")
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End Navbar -->
+        </div>
+        <!-- End Header -->
+            @RenderBody()
+            <hr />
+            <!-- Start Foooter-->
+            <footer class="footer">
+                <div class="main-footer">
+                    <div class="container">
+                        <div class="row">
+
+                            <!-- Start Contact -->
+                            <div class="col col-md-3 col-sm-6 footer-links">
+                                <h3 class="cv-theme-widget-title">
+                                   
+                                </h3>
+
+                                <ul class="contact-list-unstyled">
+                            
+                                </ul>
+                                <div class="footer-copyright">
+                                    <p>&copy; All Rights Reserved @@ <a target="_blank" href="http://craftdzine.com">CraftDzine</a></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- End Foooter-->
+        <!-- End Main Wrapper -->
+        </div>
+    </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+
+        <script src="~/Scripts/tinymce/tinymce.min.js"></script>
+        <script src="~/Scripts/tinymce/jquery.tinymce.min.js"></script>
+
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/owl.carousel.min.js"></script>
+        <script src="~/Scripts/filter.js"></script>
+        <script src="~/Scripts/waypoints.min.js"></script>
+        <script src="~/Scripts/jquery.counterup.min.js"></script>
+        <script src="~/Scripts/jquery.flexslider-min.js"></script>
+        <script src="~/Scripts/magnific-popup.min.js"></script>
+        <script src="~/Scripts/jquery.selectBox.js"></script>
+        <script src="~/Scripts/custom.js"></script>
+        <script src="~/Scripts/jquery.dotdotdot.min.js"></script>
+
+        @RenderSection("scripts", required: false)
+
+        <script>
+            jQuery(document).ready(function ($) {
+
+                $(".blogThumbnailText").dotdotdot({
+
+                    callback: function (isTruncated) { },
+                    /* Function invoked after truncating the text.
+                        Inside this function, "this" refers to the wrapper. */
+
+                    ellipsis: "\u2026 ",
+                    /* The text to add as ellipsis. */
+
+                    height: 50,
+                    /* The (max-)height for the wrapper:
+                        null: measure the CSS (max-)height ones;
+                        a number: sets a specific height in pixels;
+                        "watch": re-measures the CSS (max-)height in the "watch". */
+
+                    keep: null,
+                    /* jQuery-selector for elements to keep after the ellipsis. */
+
+                    tolerance: 0,
+                    /* Deviation for the measured wrapper height. */
+
+                    truncate: "word",
+                    /* How to truncate the text: By "node", "word" or "letter". */
+
+                    watch: "window",
+                    /* Whether to update the ellipsis:
+                        true: Monitors the wrapper width and height;
+                        "window": Monitors the window width and height. */
+                });
+
+            });
+        </script>
+</body>
+
+
+
+
+
+</html>
