@@ -17,26 +17,26 @@ namespace myBlog.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Comments
-        public ActionResult Index()
-        {
-            var comments = db.Comments.Include(c => c.Author).Include(c => c.Post);
-            return View(comments.ToList());
-        }
+        //public ActionResult Index()
+        //{
+        //    var comments = db.Comments.Include(c => c.Author).Include(c => c.Post);
+        //    return View(comments.ToList());
+        //}
 
         // GET: Comments/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            return View(comment);
-        }
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Comment comment = db.Comments.Find(id);
+        //    if (comment == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(comment);
+        //}
 
         // GET: Comments/Create
         public ActionResult Create()
